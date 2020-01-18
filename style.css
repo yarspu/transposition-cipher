@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+}
+p {
+    margin-bottom: 0 !important;
+}
+
+h2,
+.keyValue,
+.encryptResult,
+.decryptResult {
+    text-align: center;    
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task 2</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Перестановочный шифр / Transposition cipher</h2>
+        <div class='msg row justify-content-around my-2'>
+            <p class='msgText justify-content-center align-self-center col-3'>Введите ваше сообщение:</p>
+            <input type="text" class="msgInput col-8">
+        </div>
+
+        <div class='row'>
+            <div class="key col-xl-4 border border-secondary p-1 m-1">
+                <div class="row justify-content-around mb-2">
+                    <p class="keyText justify-content-center align-self-center col-3">Ключ:</p>
+                    <input type="button" value="Обновить" class="keyRefresh btn btn-secondary col-5">            
+                </div>
+                <div class="row">
+                    <p class='keyValue col mb-2'></p>
+                </div>
+            </div>
+
+            <div class='encrypt col border border-warning p-1 m-1'>
+                <div class="row mb-2 justify-content-around">
+                    <input type="button" value="encrypt" class="encryptButton btn btn-warning col-10">
+                    <p class='encryptResult col-12'></p>
+                </div>
+            </div>
+    
+            <div class='decrypt col border border-success p-1 m-1'>
+                <div class="row mb-2 justify-content-around">
+                    <input type="button" value="decrypt" class="decryptButton btn btn-success col-10">
+                    <p class='decryptResult col-12'></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <script src="./task2.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.keyValue').append(key);
+            $('.keyRefresh').click(()=> {
+                $('.keyValue').text(creatKey());
+                $('.encryptResult').text('')
+                $('.decryptResult').text('')
+
+            });
+            $('.encryptButton').click(()=> {
+                let key = $('.keyValue').text()
+                let msg = $('.msgInput').val()
+                $('.encryptResult').text(encrypt(msg, key));
+            });
+            $('.decryptButton').click(()=> {
+                let key = $('.keyValue').text()
+                let msg = $('.encryptResult').text()
+                $('.decryptResult').text(decrypt(msg, key));
+            });
+            $('.msgInput').val(defaultMsg);
+        });
+    </script>
+</body>
+</html>
